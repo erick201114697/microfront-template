@@ -1,10 +1,12 @@
 import React from "react";
 import { BrowserRouter, Link } from "react-router-dom";
+
 import "./root.component.css";
 
 export default function Root(props) {
+  
   return (
-    <BrowserRouter>
+      <BrowserRouter>
       <nav className="nav">
         <Link to="/page1" className="link">
           Page 1
@@ -14,5 +16,6 @@ export default function Root(props) {
         </Link>
       </nav>
     </BrowserRouter>  
+    
   );
 }

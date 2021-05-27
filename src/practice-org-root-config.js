@@ -1,5 +1,23 @@
 import { registerApplication, start } from "single-spa";
 
+function showWhenAnyOf(routes) {
+  return function (location) {
+    return routes.some((route) => location.pathname === route);
+  };
+}
+
+function showWhenPrefix(routes) {
+  return function (location) {
+    return routes.some((route) => location.pathname.startsWith(route));
+  };
+}
+
+function showExcept(routes) {
+  return function (location) {
+    return routes.every((route) => location.pathname !== route);
+  };
+}
+
 /* registerApplication({
   name: "@single-spa/welcome",
   app: () =>
@@ -10,17 +28,29 @@ import { registerApplication, start } from "single-spa";
 }); */
 
 registerApplication({
-  name: "@practice-org/microfrontend-exercise-app-two",
-  app: () => System.import("@practice-org/microfrontend-exercise-app-two"),
-  activeWhen: ["/page1"]
+  name: "@practice-org/microfrontend-pingfed-authentication",
+  app: () =>
+    System.import("@practice-org/microfrontend-pingfed-authentication"),
+  activeWhen: showWhenPrefix(["/"]),
 });
 
- registerApplication({
-   name: "@practice-org/microfrontend-exercise-app-one",
-   app: () => System.import("@practice-org/microfrontend-exercise-app-one"),
-   activeWhen: ["/"]
- });
+registerApplication({
+  name: "@practice-org/microfrontend-exercise-app-three",
+  app: () => System.import("@practice-org/microfrontend-exercise-app-three"),
+  activeWhen: showWhenAnyOf(["/login"]),
+});
 
+registerApplication({
+  name: "@practice-org/microfrontend-exercise-app-two",
+  app: () => System.import("@practice-org/microfrontend-exercise-app-two"),
+  activeWhen: showWhenPrefix(["/page1"]),
+});
+
+registerApplication({
+  name: "@practice-org/microfrontend-exercise-app-one",
+  app: () => System.import("@practice-org/microfrontend-exercise-app-one"),
+  activeWhen: showWhenAnyOf(["/main"]),
+});
 
 start({
   urlRerouteOnly: true,

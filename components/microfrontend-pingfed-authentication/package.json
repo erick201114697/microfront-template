@@ -1,7 +1,7 @@
 {
-  "name": "@practice-org/microfrontend-exercise-app-two",
+  "name": "@practice-org/microfrontend-pingfed-authentication",
   "scripts": {
-    "start": "webpack serve --port 3002",
+    "start": "webpack serve --port 3004",
     "start:standalone": "webpack serve --env standalone",
     "build": "webpack --mode=production",
     "analyze": "webpack --mode=production --env analyze",
@@ -48,6 +48,7 @@
   },
   "dependencies": {
     "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "react-simple-oauth2-login": "^0.2.0"
   }
 }

@@ -28,9 +28,8 @@ function showExcept(routes) {
 }); */
 
 registerApplication({
-  name: "@practice-org/microfrontend-pingfed-authentication",
-  app: () =>
-    System.import("@practice-org/microfrontend-pingfed-authentication"),
+  name: "@single-spa-test/app-react",
+  app: () => System.import("@single-spa-test/app-react"),
   activeWhen: showWhenPrefix(["/"]),
 });
 
